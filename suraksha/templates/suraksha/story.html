@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories of Resilience</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #D2B48C;
+        }
+        .header {
+            background-color: #263aac;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+        .intro {
+            font-family: 'Great Vibes', cursive;
+            font-size: 27px;
+            font-weight: 800px;
+            margin-top: 20px;
+            text-align: center;
+            max-width: 800px;
+            color:black
+        }
+        .stories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1600px;
+            width: 100%;
+            padding: 20px;
+        }
+        .story-button {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+        .story1 { background: linear-gradient(45deg, #f1c40f, #e67e22); }
+        .story2 { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        .story3 { background: linear-gradient(45deg, #3498db, #2980b9); }
+        .story4 { background: linear-gradient(45deg, #e74c3c, #c0392b); }
+        .story5 { background: linear-gradient(45deg, #9b59b6, #8e44ad); }
+        .story6 { background: linear-gradient(45deg, #34495e, #2c3e50); }
+        .story7 { background: linear-gradient(45deg, #ff8c00, #ff4500); }
+        .story8 { background: linear-gradient(45deg, #1abc9c, #16a085); }
+        .story9 { background: linear-gradient(45deg, #c71585, #db7093); }
+        .story10 { background: linear-gradient(45deg, #ffa07a, #fa8072); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Stories of Resilience and Strength</h1>
+    </div>
+
+    <p class="intro">Because Stories Create Community,Enables Us To See Through The Eyes Of Other People,And Lets Us Feel The Claims Of Others!!!!!....</p>
+
+    <div class="stories">
+        <div class="story-button story1">
+            <a href="{% url 'story1' %}" style="text-decoration:none;color:white;">Story 1</a>
+        </div>
+        <div class="story-button story2">
+            <a href="{% url 'story2' %}" style="text-decoration:none;color:white;">Story 2</a>
+        </div>
+        <div class="story-button story3">
+            <a href="{% url 'story3' %}" style="text-decoration:none;color:white;">Story 3</a>
+        </div>
+        <div class="story-button story4">
+            <a href="{% url 'story4' %}" style="text-decoration:none;color:white;">Story 4</a>
+        </div>
+        <div class="story-button story5">
+            <a href="{% url 'story5' %}" style="text-decoration:none;color:white;">Story 5</a>
+        </div>
+        <div class="story-button story6">
+            <a href="{% url 'story6' %}" style="text-decoration:none;color:white;">Story 6</a>
+        </div>
+        <div class="story-button story7">
+            <a href="{% url 'story7' %}" style="text-decoration:none;color:white;">Story 7</a>
+        </div>
+        <div class="story-button story8">
+            <a href="{% url 'story8' %}" style="text-decoration:none;color:white;">Story 8</a>
+        </div>
+        <div class="story-button story9">
+            <a href="{% url 'story9' %}" style="text-decoration:none;color:white;">Story 9</a>
+        </div>
+        <div class="story-button story10">
+            <a href="{% url 'story10' %}" style="text-decoration:none;color:white;">Story 10</a>
+        </div>
+    </div>
+</body>
+</html>

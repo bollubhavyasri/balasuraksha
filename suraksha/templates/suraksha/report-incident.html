@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Incident</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8b5a2b;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: auto;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #8b5a2b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Report an Incident</h2>
+        <form id="incident-form">
+            <input type="text" id="reporter-name" placeholder="Your Name (Optional)">
+            <input type="email" id="reporter-email" placeholder="Your Email (Optional)">
+            <input type="text" id="victim-relationship" placeholder="How is the victim related to you?" required>
+            <input type="text" id="victim-name" placeholder="What is his name?" required>
+            <input type="text" id="incident-location" placeholder="Location of the Incident" required>
+            <textarea id="incident-description" placeholder="Describe the incident..." rows="5" required></textarea>
+
+            <label for="evidence">Upload Evidence (Images/Videos):</label>
+            <input type="file" id="evidence" accept="image/*,video/*" multiple>
+
+            <button type="submit">Submit Report</button>
+        </form>
+
+        <br>
+        <button onclick="window.location.href='user-dashboard.html'">Back to Dashboard</button>
+    </div>
+
+    <script>
+        document.getElementById("incident-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById("reporter-name").value.trim();
+            const email = document.getElementById("reporter-email").value.trim();
+            const relationship = document.getElementById("victim-relationship").value.trim();
+            const victimName = document.getElementById("victim-name").value.trim();
+            const location = document.getElementById("incident-location").value.trim();
+            const description = document.getElementById("incident-description").value.trim();
+            const files = document.getElementById("evidence").files;
+
+            if (!relationship || !victimName || !location || !description) {
+                alert("All fields except name and email are required.");
+                return;
+            }
+
+            let evidenceFiles = [];
+            let filePromises = [];
+
+            if (files.length > 0) {
+                for (let file of files) {
+                    const reader = new FileReader();
+                    const filePromise = new Promise((resolve) => {
+                        reader.onload = function (event) {
+                            evidenceFiles.push({
+                                name: file.name,
+                                type: file.type,
+                                data: event.target.result
+                            });
+                            resolve();
+                        };
+                        reader.readAsDataURL(file);
+                    });
+
+                    filePromises.push(filePromise);
+                }
+
+                Promise.all(filePromises).then(() => {
+                    sendEmail(name, email, relationship, victimName, location, description, evidenceFiles);
+                });
+            } else {
+                sendEmail(name, email, relationship, victimName, location, description, evidenceFiles);
+            }
+        });
+
+         function sendEmail(name, email, relationship, victimName, location, description, evidenceFiles) {
+    fetch("http://localhost:5000/send-report", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name, 
+            email, 
+            relationship, 
+            victimName, 
+            location, 
+            description, 
+            evidenceFiles
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Failed to send report.");
+    });
+}
+
+    </script>
+
+</body>
+</html>

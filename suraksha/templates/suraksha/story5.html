@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALices's story</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+background-color: #f0ccac;
+        }
+        .container {
+            text-align: center;
+        }
+        .circle-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        blockquote {
+            font-style: italic;
+            color: #555;
+        }
+        .story {
+            text-align: left;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img  src="{% static 'images/alice.jpg' %}"class="circle-img">
+        <h1>ALice's Story</h1>
+        <blockquote>
+<strong style="color:darkblue;">
+              "I was very young when I was sexually abused by someone known to my family. Looking back, it feels like I lost my childhood." <br>
+            </strong>
+        </blockquote>
+        <div class="story">
+            <p> After the abuse, I started isolating myself from my family and friends and had problems sleeping with night terrors. I used to find it difficult to concentrate in school and had problems remembering stuff. To cope I used to self-harm.
+
+  </p>
+            <p> I had to have an interview with the police and social services after I’d told them. The police were nice but I was scared to answer the questions – I was worried that no one would believe me." </p>
+            <p> The police told me that they wanted to take the case to court. I got worried as it got closer to the time. My mum got in touch with NSPCC.Anne*, my key worker, came out to my house to meet me which was good.She was really cheerful when I met her. I’d been nervous about another new face - a new person coming to meet me. </p>
+        <p> Going to court and being questioned about my evidence brought all of my memories of the abuse straight back. I felt like my recovery was set straight back at the beginning again – it had a really big effect on me. 
+
+Colleen wouldn’t let me sit on my phone and made me do something productive so we ended up playing cards. I’d have just been playing on my phone, looking through pics, making myself look occupied.
+
+Colleen was able to sit in the corner of the live link room while I was giving evidence. It was good to have another person in the room, even though I couldn’t talk to her."</p></div>
+    </div>
+</body>
+</html>

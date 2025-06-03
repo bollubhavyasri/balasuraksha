@@ -1,0 +1,18 @@
+{% extends 'suraksha/base.html' %}
+{% load static %}
+
+{% block title %}Available Therapy Sessions{% endblock %}
+
+{% block content %}
+<h1>Available Therapy Sessions</h1>
+<ul>
+    {% for slot in slots %}
+    <li>
+        <strong>Therapist:</strong> {{ slot.therapist.user.email }}<br>
+        <strong>Date:</strong> {{ slot.date }}<br>
+        <strong>Time:</strong> {{ slot.start_time }} - {{ slot.end_time }}<br>
+        <a href="{% url 'book_session' slot.id %}">Book Now</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

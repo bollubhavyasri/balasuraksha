@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Child Abuse Locations Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+     body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4e3d7; /* Light brown background for the whole page */
+  }
+
+  #map {
+    height: 600px;
+    width: 100%;
+    background-color: #8b5a2b;
+  }
+
+  .header-container {
+    background-color: #f4e3d7;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    color: #8b5a2b;
+    margin: 0;
+  }
+
+  .note-box {
+    background-color: #f2f2f2;
+    border-left: 6px solid #8b5a2b;
+    padding: 16px;
+    margin: 20px;
+  }
+
+  .note-box strong {
+    color: #333;
+  }
+  </style>
+</head>
+<body>
+  <div class="header-container">
+    <h1>Visual Analysis</h1>
+  </div>
+
+  <div id="map"></div>
+
+  <div class="note-box">
+    <strong>Note:</strong><br>
+    <ul>
+      <li><strong style="color:blue;">Blue markers</strong> indicate regions with frequent reports of child abuse such as trafficking, exploitation, and neglect.</li>
+      <li><strong style="color:green;">Green markers</strong> represent countries that are considered relatively safe for children, with stronger child protection systems in place.</li>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([20, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var globalMarkers = [
+      { lat: 34.5553, lng: 69.2075, place: 'Afghanistan', description: 'Sexual abuse, human trafficking, child marriage', percentage: '91%' },
+      { lat: 30.3753, lng: 69.3451, place: 'Pakistan', description: 'Sexual abuse, physical abuse', percentage: '50%' },
+      { lat: 9.0820, lng: 8.6753, place: 'Nigeria', description: 'Sexual abuse, human trafficking, child marriages', percentage: '60%' },
+      { lat: -1.286389, lng: 36.817223, place: 'Kenya', description: 'Sexual abuse, trafficking, exploitation', percentage: '46%' },
+      { lat: -30.5595, lng: 22.9375, place: 'South Africa', description: 'Child abuse cases reported', percentage: '55%' },
+      { lat: -14.2350, lng: -51.9253, place: 'Brazil', description: 'Exploitation, trafficking', percentage: '45%' },
+      { lat: 23.6345, lng: -102.5528, place: 'Mexico', description: 'Human trafficking, forced labor', percentage: '40%' },
+      { lat: 4.5709, lng: -74.2973, place: 'Colombia', description: 'Child exploitation, forced labor', percentage: '35%' },
+      { lat: 15.5527, lng: 48.5164, place: 'Yemen', description: 'Child labor, sexual abuse', percentage: '75%' },
+      { lat: 34.8021, lng: 38.9968, place: 'Syria', description: 'War-related child abuse', percentage: '80%' },
+
+      { lat: 9.145, lng: 40.4897, place: 'Ethiopia', description: 'Child labor, trafficking, forced marriages', percentage: '50%' },
+    { lat: -4.0383, lng: 21.7587, place: 'Democratic Republic of Congo', description: 'Child soldiers, abuse, exploitation', percentage: '65%' },
+    { lat: 12.8628, lng: 30.2176, place: 'Sudan', description: 'Conflict-related abuse, child marriage', percentage: '60%' },
+    { lat: 5.1521, lng: 46.1996, place: 'Somalia', description: 'Human trafficking, child labor', percentage: '70%' },
+    { lat: 1.3733, lng: 32.2903, place: 'Uganda', description: 'Abuse in refugee settlements', percentage: '45%' },
+    { lat: -19.0154, lng: 29.1549, place: 'Zimbabwe', description: 'Child abuse and neglect', percentage: '50%' },
+    { lat: 6.6111, lng: 20.9394, place: 'Central African Republic', description: 'Child soldier recruitment', percentage: '75%' },
+    { lat: 23.685, lng: 90.3563, place: 'Bangladesh', description: 'Child labor, trafficking, abuse', percentage: '55%' },
+    { lat: 28.3949, lng: 84.124, place: 'Nepal', description: 'Child trafficking, exploitation', percentage: '50%' },
+    { lat: 7.8731, lng: 80.7718, place: 'Sri Lanka', description: 'Child abuse and exploitation', percentage: '35%' },
+    { lat: 21.9162, lng: 95.956, place: 'Myanmar', description: 'Forced labor, trafficking', percentage: '60%' },
+    { lat: -0.7893, lng: 113.9213, place: 'Indonesia', description: 'Child exploitation', percentage: '40%' },
+    { lat: 13.41, lng: 122.56, place: 'Philippines', description: 'Online sexual abuse, trafficking', percentage: '65%' },
+    { lat: 15.8700, lng: 100.9925, place: 'Thailand', description: 'Child exploitation and abuse', percentage: '55%' },
+    { lat: 12.5657, lng: 104.991, place: 'Cambodia', description: 'Human trafficking, exploitation', percentage: '60%' },
+    { lat: 14.0583, lng: 108.2772, place: 'Vietnam', description: 'Child labor, sexual exploitation', percentage: '45%' },
+    { lat: 35.8617, lng: 104.1954, place: 'China', description: 'Child trafficking, labor exploitation', percentage: '40%' },
+    { lat: 32.4279, lng: 53.688, place: 'Iran', description: 'Neglect and exploitation', percentage: '30%' },
+    { lat: 33.2232, lng: 43.6793, place: 'Iraq', description: 'War-related child abuse', percentage: '50%' },
+  ];
+
+  
+
+    var indiaMarkers = [
+      { lat: 19.075983, lng: 72.877655, place: 'Maharashtra', description: 'Child labor, trafficking', percentage: '5%' },
+      { lat: 23.259933, lng: 77.412613, place: 'Madhya Pradesh', description: 'Child exploitation', percentage: '5%' },
+      { lat: 26.846708, lng: 80.946159, place: 'Uttar Pradesh', description: 'High child abuse rates', percentage: '7%' },
+      { lat: 12.971599, lng: 77.594566, place: 'Karnataka', description: 'Human trafficking', percentage: '5%' },
+      { lat: 13.082680, lng: 80.270718, place: 'Tamil Nadu', description: 'Forced child labor', percentage: '7%' },
+      { lat: 17.385044, lng: 78.486671, place: 'Telangana', description: 'Sexual abuse cases', percentage: '4%' },
+      { lat: 15.912900, lng: 79.739988, place: 'Andhra Pradesh', description: 'Child marriage cases', percentage: '2%' },
+      { lat: 28.704060, lng: 77.102493, place: 'Delhi', description: 'High reports of child abuse', percentage: '5%' }
+    ];
+
+    var usMarkers = [
+      { lat: 45.253783, lng: -69.445469, place: 'Maine', description: 'Child neglect cases', percentage: '30%' },
+      { lat: 64.200841, lng: -149.493673, place: 'Alaska', description: 'Child exploitation', percentage: '35%' },
+      { lat: 38.597626, lng: -80.454903, place: 'West Virginia', description: 'Trafficking and abuse', percentage: '50%' },
+      { lat: 42.407211, lng: -71.382437, place: 'Massachusetts', description: 'Sexual abuse cases', percentage: '45%' },
+      { lat: 37.839333, lng: -84.270018, place: 'Kentucky', description: 'High child abuse reports', percentage: '40%' },
+      { lat: 46.879682, lng: -110.362566, place: 'Montana', description: 'Child trafficking', percentage: '30%' },
+      { lat: 35.007752, lng: -97.092877, place: 'Oklahoma', description: 'Child neglect and abuse', percentage: '50%' },
+      { lat: 34.519940, lng: -105.870090, place: 'New Mexico', description: 'Exploitation and trafficking', percentage: '35%' },
+      { lat: 40.712776, lng: -74.005974, place: 'New York', description: 'child exploitation', percentage: '30%' },
+      { lat: 41.878003, lng: -93.097702, place: 'Iowa', description: 'Child exploitation cases', percentage: '45%' }
+    ];
+
+    // Default blue markers (Leaflet's default marker is blue)
+    globalMarkers.concat(indiaMarkers, usMarkers).forEach(function(marker) {
+      L.marker([marker.lat, marker.lng]).addTo(map)
+        .bindPopup(`<b>${marker.place}</b><br>${marker.description}<br><b>Percentage: ${marker.percentage}</b>`);
+    });
+
+    // Green circle markers (safe countries)
+    var greenCountries = [
+      { lat: 56.2639, lng: 9.5018, place: 'Denmark' },
+      { lat: 60.1282, lng: 18.6435, place: 'Sweden' },
+      { lat: 60.4720, lng: 8.4689, place: 'Norway' },
+      { lat: 61.9241, lng: 25.7482, place: 'Finland' },
+      { lat: 46.8182, lng: 8.2275, place: 'Switzerland' },
+      { lat: 56.1304, lng: -106.3468, place: 'Canada' },
+      { lat: 52.1326, lng: 5.2913, place: 'Netherlands' },
+      { lat: -25.2744, lng: 133.7751, place: 'Australia' },
+      { lat: -40.9006, lng: 174.8860, place: 'New Zealand' },
+      { lat: 47.5162, lng: 14.5501, place: 'Austria' }
+    ];
+
+    greenCountries.forEach(function(location) {
+      L.circleMarker([location.lat, location.lng], {
+        color: 'green',
+        fillColor: 'green',
+        fillOpacity: 0.6,
+        radius: 8
+      }).addTo(map).bindPopup(`<b>${location.place}</b>`);
+    });
+  </script>
+</body>
+</html>

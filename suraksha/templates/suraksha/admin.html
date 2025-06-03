@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        button {
+            padding: 8px 12px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Report Type</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="report-list">
+                <!-- Report rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Sample data for reports
+        const reports = [
+            { id: 1, reportType: 'Bug', description: 'There is a bug in the login form.', status: 'Pending' },
+            { id: 2, reportType: 'Feedback', description: 'Great website!', status: 'Reviewed' },
+            { id: 3, reportType: 'Other', description: 'Add more features.', status: 'Pending' }
+        ];
+
+        // Function to render reports
+        function renderReports() {
+            const reportList = document.getElementById('report-list');
+            reportList.innerHTML = '';
+            reports.forEach(report => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${report.id}</td>
+                    <td>${report.reportType}</td>
+                    <td>${report.description}</td>
+                    <td>${report.status}</td>
+                    <td>
+                        <button onclick="updateStatus(${report.id}, 'In Progress')">In Progress</button>
+                        <button onclick="updateStatus(${report.id}, 'Resolved')">Resolved</button>
+                    </td>
+                `;
+                reportList.appendChild(row);
+            });
+        }
+
+        // Function to update report status
+        function updateStatus(reportId, newStatus) {
+            const report = reports.find(r => r.id === reportId);
+            if (report) {
+                report.status = newStatus;
+                renderReports();
+            }
+        }
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', renderReports);
+    </script>
+</body>
+</html>

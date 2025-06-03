@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            background-color: #8b5a2b;
+            color: white; /* Optional: Change text color for better readability */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <p>Access resources, participate in discussions, and get support.</p>
+
+    <!-- Button to Open Incident Report Page -->
+    <button onclick="window.location.href='report-incident.html'">Report an Incident</button>
+
+    <!-- Logout Button -->
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            localStorage.removeItem("userRole");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+{% extends 'suraksha/base.html' %}
+{% block content %}
+<h1>Book Session</h1>
+<p>Therapist: {{ timeslot.therapist.user.email }}</p>
+<p>Date: {{ timeslot.date }}</p>
+<p>Time: {{ timeslot.start_time }} - {{ timeslot.end_time }}</p>
+<form method="post">
+    {% csrf_token %}
+    <label for="purpose">Purpose of Session:</label><br>
+    <textarea name="purpose" id="purpose" rows="4" cols="50"></textarea><br>
+    <button type="submit">Confirm Booking</button>
+</form>
+{% endblock %}

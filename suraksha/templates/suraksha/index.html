@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Child Abuse Support Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e1e2f, #3c4ac7);
+      color: white;
+      padding: 40px 30px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .left-header {
+      flex: 1;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin: 0;
+      text-align: center;
+      flex: 1;
+    }
+
+    .right-header {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .logo {
+      height: 100px;
+      width: auto;
+    }
+
+    .slogan-container {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .slideshow-container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      z-index: 0;
+    }
+
+    .slideshow {
+      display: flex;
+      width: 500%;
+      height: 100%;
+      animation: slide 30s infinite linear;
+    }
+
+    .slideshow img {
+      width: 20%;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-20%); }
+      40% { transform: translateX(-40%); }
+      60% { transform: translateX(-60%); }
+      80% { transform: translateX(-80%); }
+      100% { transform: translateX(0); }
+    }
+
+    nav {
+      background-color: #f0ccac;
+      padding: 2rem 1rem;
+      width: 200px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      border-right: 1px solid #ccc;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+    }
+
+    nav h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      color: #333;
+      border-bottom: 2px solid brown;
+      padding-bottom: 0.3rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0.7rem 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      display: block;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #9b24bc;
+      color: white;
+    }
+
+    .main-content {
+      margin-left: 240px;
+      padding: 2rem;
+      background-color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      margin-top: 2rem;
+    }
+
+    .section h2 {
+      color: #050a5c;
+      border-bottom: 2px solid #040313;
+      margin-bottom: 0.7rem;
+      font-size: 1.4rem;
+    }
+
+    .section p {
+      font-size: 1.3rem;
+      color: #444;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Logo and Slogan -->
+  <header>
+    <div class="left-header"></div>
+    <h1>BALA SURAKSHA</h1>
+    <div class="right-header">
+      <img src="{% static 'images/logo.jpg' %}" alt="Logo" class="logo">
+    </div>
+    <div class="slogan-container" id="slogan"></div>
+  </header>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <div class="slideshow">
+      <img src="https://juriscentre.com/wp-content/uploads/2022/03/pexels-photo-2940334.jpeg" alt="Image 1">
+      <img src="https://www.hercircle.in/hcm/EngageImage/0244AA1E-CD12-470F-9E4E-622D171C469A/D/4C5E36D6-DB76-4AB3-8CEC-C6894E8656E3.jpg" alt="Image 2">
+      <img src="https://www.cry.org/wp-content/uploads/importance-of-girl-child-education.jpg" alt="Image 3">
+      <img src="https://img.freepik.com/premium-photo/children-india-with-happy-expression_470436-1606.jpg" alt="Image 4">
+      <img src="https://www.uwa.edu.au/news/-/media/project/uwa/uwa/newsroom/card-image/2022/child-protection---card.jpg" alt="Image 5">
+    </div>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <nav>
+    <h3>Navigation</h3>
+    <ul>
+      <li><a href="{% url 'home' %}">About Us</a></li>
+      <li><a href="{% url 'general_discussion' %}">General FAQs</a></li>
+      <li><a href="{% url 'map' %}">Visual Analysis</a></li>
+      <li><a href="{% url 'video_tutorials' %}">Video Tutorials</a></li>
+      <li><a href="{% url 'story' %}">Story</a></li>
+      <li><a href="{% url 'report_incident' %}">Report Incident</a></li>
+      <li><a href="{% url 'help_line' %}">Helpline</a></li>
+      <li><a href="{% url 'report_issue' %}">Report an Issue</a></li>
+      <li><a href="#" onclick="logout()" style="color: crimson;">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="section">
+      <h2>Welcome to Bala Suraksha</h2>
+      <p>
+        Bala Suraksha is a trusted platform dedicated to protecting children and raising awareness about child abuse.
+        Access help, report abuse, and learn how to be part of the change.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Latest Updates</h2>
+      <p>
+        We’ve recently added new features: video tutorials, survivor stories, and a visual map of abuse statistics to better inform and support victims.
+      </p>
+    </div>
+  </div>
+
+  <!-- Typing Effect Script -->
+  <script>
+    const sloganText = "Children are most vulnerable, promote child safety and end child abuse.";
+    let index = 0;
+
+    function typeSlogan() {
+      if (index < sloganText.length) {
+        document.getElementById("slogan").innerHTML += sloganText.charAt(index);
+        index++;
+        setTimeout(typeSlogan, 100);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", typeSlogan);
+
+    function logout() {
+      sessionStorage.clear();
+      localStorage.clear();
+      window.location.href = '/login';
+    }
+  </script>
+
+</body>
+</html>

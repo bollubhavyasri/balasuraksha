@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Child Abuse Support Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to top, #001f3f, #643da3);
+            position: relative;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            top: 0;
+            left: -50%;
+            background: radial-gradient(circle at 50% 0%, rgba(22, 109, 167, 0.4) 0%, transparent 80%),
+                        radial-gradient(circle at 50% 100%, rgba(0, 102, 204, 0.3) 0%, transparent 80%);
+            animation: wave 10s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateX(0) translateY(0);
+            }
+            50% {
+                transform: translateX(50px) translateY(20px);
+            }
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        h1, h2 {
+            color:  #654321;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #2b43ac;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color:#a87142;
+        }
+
+        img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-top: 10px;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+        }
+
+        .accordion-section {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color:#fff642;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            background-color:blue;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 10px;
+            background-color:blue;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #010704;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-to-top:hover {
+            background-color: #9542a8;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".container").style.opacity = "1";
+            document.querySelector(".container").style.transform = "translateY(0)";
+
+            // Accordion functionality
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+
+            // Back to Top button functionality
+            const backToTopButton = document.createElement('button');
+            backToTopButton.classList.add('back-to-top');
+            backToTopButton.textContent = '↑ Top';
+            document.body.appendChild(backToTopButton);
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>About Us</h1>
+        <p>Welcome to <strong>BALA SURAKSHA</strong> (A Child Abuse Support Portal). This platform is dedicated to raising awareness, providing resources, and supporting individuals affected by child abuse. Our plan of action is to end this dreadful social evil through:</p>
+        <ul>
+            <li>Prevention</li>
+            <li>Reporting</li>
+            <li>Support</li>
+        </ul>
+        <img src="https://t3.ftcdn.net/jpg/03/00/89/28/360_F_300892874_wIWAJxfT8kuFsvxeAGzFRebB3flrzh7l.jpg" alt="Prevention Image" />
+
+        <h2>What is Child Abuse?</h2>
+        <div class="accordion-section">
+            <div class="accordion-header">Definition of Child Abuse</div>
+            <div class="accordion-content">
+                <p>Child abuse (also called child endangerment or child maltreatment) is physical, sexual, emotional and/or psychological maltreatment or neglect of a child, especially by a parent or a caregiver. Child abuse may include any act or failure to act by a parent or a caregiver that results in actual or potential wrongful harm to a child and can occur in a child's home, or in organizations, schools, or communities the child interacts with.</p>
+            </div>
+        </div>
+        <img src="https://images.indianexpress.com/2018/09/child-abuse.jpg" alt="Child Abuse Awareness" />
+
+        <h2>How Does Child Abuse Start?</h2>
+        <div class="accordion-section">
+            <div class="accordion-header">Factors leading to child abuse</div>
+            <div class="accordion-content">
+                <ul>
+                    <li><strong>Parental Stress:</strong> Financial difficulties, lack of support.</li>
+                    <li><strong>Substance Abuse:</strong> Drugs and alcohol use increasing neglect.</li>
+                    <li><strong>History of Abuse:</strong> Cycle of abuse from past experiences.</li>
+                    <li><strong>Mental Health Issues:</strong> Untreated disorders affecting parenting.</li>
+                    <li><strong>Lack of Education:</strong> Misunderstanding of child development.</li>
+                    <li><strong>Social Isolation:</strong> Lack of community and support networks.</li>
+                </ul>
+            </div>
+        </div>
+        <img src="https://americanspcc.org/wp-content/uploads/2021/03/whatischildabuse-e1616189214413.jpg" alt="How Child Abuse Starts" />
+
+        <h2>Different Categories of Child Abuse</h2>
+        <div class="accordion-section">
+            <div class="accordion-header">Categories of Child Abuse</div>
+            <div class="accordion-content">
+                <ul>
+                    <li><strong>Physical Abuse:</strong>
+                        <ul>
+                            <li>Hitting</li>
+                            <li>Shaking</li>
+                            <li>Choking</li>
+                            <li>Burning</li>
+                            <li>Poisoning</li>
+                            <li>Using physical restraints</li>
+                        </ul>
+                    </li>
+                    <li><strong>Sexual Abuse:</strong>
+                        <ul>
+                            <li>Forcing or pressuring a child into sexual acts</li>
+                            <li>Exposing a child to inappropriate content</li>
+                            <li>Engaging a child in sexual conversations or behaviors</li>
+                        </ul>
+                    </li>
+                    <li><strong>Emotional Abuse:</strong>
+                        <ul>
+                            <li>Rejection</li>
+                            <li>Bullying and teasing</li>
+                            <li>Yelling and constant criticism</li>
+                            <li>Isolation from family and friends</li>
+                            <li>Exposure to domestic violence</li>
+                        </ul>
+                    </li>
+                    <li><strong>Neglect:</strong>
+                        <ul>
+                            <li>Failure to provide food and nutrition</li>
+                            <li>Inadequate housing and poor living conditions</li>
+                            <li>Lack of healthcare and hygiene</li>
+                            <li>Insufficient supervision and safety measures</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <img src="https://cdn.who.int/media/images/default-source/cover-images/multimedia/multiple-forms-of-violence-against-children.tmb-549v.jpg?sfvrsn=3bb6d18b_1" alt="Categories of Child Abuse" />
+
+        <h2>Consequences of Child Abuse</h2>
+        <div class="accordion-section">
+            <div class="accordion-header">Consequences of Child Abuse</div>
+            <div class="accordion-content">
+                <ul>
+                    <li><strong>Physical Consequences:</strong>
+                        <ul>
+                            <li>Injuries (bruises, fractures, burns).</li>
+                            <li>Chronic health issues and developmental delays.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Emotional and Psychological Consequences:</strong>
+                        <ul>
+                            <li>Depression and anxiety disorders.</li>
+                            <li>Post-Traumatic Stress Disorder (PTSD).</li>
+                            <li>Low self-esteem and feelings of worthlessness.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Behavioral Consequences:</strong>
+                        <ul>
+                            <li>Aggression and violent behavior.</li>
+                            <li>Substance abuse and risky behaviors.</li>
+                            <li>Difficulty forming healthy relationships.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cognitive Consequences:</strong>
+                        <ul>
+                            <li>Learning difficulties and attention problems.</li>
+                            <li>Poor academic performance and higher dropout rates.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Long-Term Consequences:</strong>
+                        <ul>
+                            <li>Persistent mental health issues into adulthood.</li>
+                            <li>Risk of perpetuating the cycle of abuse in future generations.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <img src="https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-319-72589-5_2/MediaObjects/448265_1_En_2_Fig1_HTML.png" alt="Consequences of Child Abuse" />
+        
+            <a href="{% url 'index' %}" class="back-link">Back to Main Page</a>
+
+        
+    </div>
+</body>
+</html>
