@@ -1,4 +1,4 @@
-#  BALA SURAKSHA – A Child Protection Web Portal
+#  BALA SURAKSHA – A Child Protection Web Application with reporting system. 
 
 BALA SURAKSHA is a web application built with a purpose: to stand up against child abuse. 
 It offers a safe, easy-to-use space where victims, guardians, and concerned individuals can report incidents, learn more about the issue, and find supportive resources—all in one place.
